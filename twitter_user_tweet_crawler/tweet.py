@@ -24,7 +24,7 @@ from .util.sql import insert_new_record, is_id_exists
 
 inject: str
 inject_js = config.inject_js
-with open(config.inject_js, 'r') as fp:
+with open(config.inject_js, 'r', encoding='utf-8') as fp:
     inject = fp.read()
 
 
