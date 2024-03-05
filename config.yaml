@@ -7,5 +7,5 @@ header:
   User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
     like Gecko) Chrome/118.0.0.0 Safari/537.36
 inject_js: "C:/Users/HP/Desktop/My_Codes/twitter_crawler/twitter_user_tweet_crawler/script.js"
-save: "C:/Users/HP/Desktop/My_Codes/twitter_crawler/twitter_user_tweet_crawler/output"
-user: cz_binance
+save: "C:/Users/HP/Desktop/My_Codes/twitter_crawler/twitter_user_tweet_crawler/output_from_aantonop"
+user: aantonop

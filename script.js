@@ -75,7 +75,7 @@ const TMD = (function () {
         'div.media-preview-container', // for tweetdeck
         'div[aria-labelledby]>div:first-child>div[role="button"][tabindex="0"]' //for audio (experimental)
       ];
-      let media = article.querySelector(media_selector.join(','));
+      // let media = article.querySelector(media_selector.join(','));
       if (media) {
         let status_id = article.querySelector('a[href*="/status/"]').href.split('/status/').pop().split('/').shift();
         let btn_group = article.querySelector('div[role="group"]:last-of-type, ul.tweet-actions, ul.tweet-detail-actions');
@@ -123,33 +123,33 @@ const TMD = (function () {
         let tasks = medias.length;
         let tasks_result = [];
         medias.forEach((media, i) => {
-          info.url = media.type == 'photo' ? media.media_url_https + ':orig' : media.video_info.variants.filter(n => n.content_type == 'video/mp4').sort((a, b) => b.bitrate - a.bitrate)[0].url;
-          info.file = info.url.split('/').pop().split(/[:?]/).shift();
-          info['file-name'] = info.file.split('.').shift();
-          info['file-ext'] = info.file.split('.').pop();
-          info['file-type'] = media.type.replace('animated_', '');
+          // info.url = media.type == 'photo' ? media.media_url_https + ':orig' : media.video_info.variants.filter(n => n.content_type == 'video/mp4').sort((a, b) => b.bitrate - a.bitrate)[0].url;
+          // info.file = info.url.split('/').pop().split(/[:?]/).shift();
+          // info['file-name'] = info.file.split('.').shift();
+          // info['file-ext'] = info.file.split('.').pop();
+          // info['file-type'] = media.type.replace('animated_', '');
           info.out = (out.replace(/\.?{file-ext}/, '') + ((medias.length > 1 || index) && !out.match('{file-name}') ? '-' + (index ? index - 1 : i) : '') + '.{file-ext}').replace(/{([^{}:]+)(:[^{}]+)?}/g, (match, name) => info[name]);
-          this.downloader.add({
-            url: info.url,
-            name: info.out,
-            onload: () => {
-              tasks -= 1;
-              tasks_result.push(((medias.length > 1 || index) ? (index ? index : i + 1) + ': ' : '') + lang.completed);
-              this.status(btn, null, tasks_result.sort().join('\n'));
-              if (tasks === 0) {
-                this.status(btn, 'completed', lang.completed);
-                if (save_history && !is_exist) {
-                  history.push(status_id);
-                  this.storage(status_id);
-                }
-              }
-            },
-            onerror: result => {
-              tasks = -1;
-              tasks_result.push((medias.length > 1 ? i + 1 + ': ' : '') + result.details.current);
-              this.status(btn, 'failed', tasks_result.sort().join('\n'));
-            }
-          });
+          // this.downloader.add({
+          //   url: info.url,
+          //   name: info.out,
+          //   onload: () => {
+          //     tasks -= 1;
+          //     tasks_result.push(((medias.length > 1 || index) ? (index ? index : i + 1) + ': ' : '') + lang.completed);
+          //     this.status(btn, null, tasks_result.sort().join('\n'));
+          //     if (tasks === 0) {
+          //       this.status(btn, 'completed', lang.completed);
+          //       if (save_history && !is_exist) {
+          //         history.push(status_id);
+          //         this.storage(status_id);
+          //       }
+          //     }
+          //   },
+          //   onerror: result => {
+          //     tasks = -1;
+          //     tasks_result.push((medias.length > 1 ? i + 1 + ': ' : '') + result.details.current);
+          //     this.status(btn, 'failed', tasks_result.sort().join('\n'));
+          //   }
+          // });
         });
       } else {
         this.status(btn, 'failed', 'MEDIA_NOT_FOUND');
