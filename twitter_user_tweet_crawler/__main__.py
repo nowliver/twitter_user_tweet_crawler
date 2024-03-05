@@ -46,7 +46,7 @@ def main():
     tweet_executor = get_executor(config['max_threads'])
     work_list = get_multiple_browsers(config['max_threads'], headless=True)
     if config['headed']:
-        work_list.extend(get_multiple_browsers(config['headed'], headless=False))
+        work_list.extend(get_multiple_browsers(config['headed'], headless=True))
     wait_list = []
     for i in work_list:
         wait_list.append(tweet_executor.submit(i.get, 'https://twitter.com/404'))
